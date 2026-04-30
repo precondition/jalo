@@ -78,6 +78,9 @@ def use_oxeylyzer_mode(mode: bool):
 def rep(a, b):
     return a == b
 
+def pinkyrep(a, b):
+    return (a.finger == Finger.LP or b.finger == Finger.RP) and rep(a, b)
+
 # single finger bigram
 def sfb(a, b):
     return a.finger == b.finger and a != b
@@ -453,6 +456,7 @@ def home(a):
 
 METRICS = [
     Metric(name="rep", description="single finger repetition", ngramType=NgramType.BIGRAM, function=rep),
+    Metric(name="pinkyrep", description="pinky finger repetition", ngramType=NgramType.BIGRAM, function=pinkyrep),
     Metric(name="sfb", description="single finger bigram", ngramType=NgramType.BIGRAM, function=sfb),
     Metric(name="sfb_rake", description="single finger bigram where the finger moves down a row", ngramType=NgramType.BIGRAM, function=sfb_rake),
     Metric(name="sfs", description="single finger skipgram", ngramType=NgramType.SKIPGRAM, function=sfs),
