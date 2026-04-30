@@ -192,6 +192,8 @@ def lsb(a, b):
 
 # row skip
 def rowskip(a, b):
+    if a.finger.type == FingerType.THUMB and b.finger.type == FingerType.THUMB:
+        return abs(a.col - b.col) > 1 and same_hand(a, b)
     return abs(a.row - b.row) > 1 and same_hand(a, b) and a.finger.type != FingerType.THUMB and b.finger.type != FingerType.THUMB
 
 def scissors_oxeylyzer_mode(a, b):
